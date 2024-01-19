@@ -180,9 +180,11 @@ packages:
   floor_annotation:
     dependency: "direct main"
     description:
-      path: "../floor_annotation"
-      relative: true
-    source: path
+      path: floor_annotation
+      ref: develop
+      resolved-ref: f69a5c049a6b2d26ef6e9ea6e69e764e1b469671
+      url: "git@github.com:mmhg-inc/floor_sqlcipher.git"
+    source: git
     version: "1.4.2"
   frontend_server_client:
     dependency: transitive

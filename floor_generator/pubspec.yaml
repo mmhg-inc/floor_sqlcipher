@@ -15,7 +15,10 @@ dependencies:
   code_builder: ^4.1.0
   collection: ^1.15.0
   floor_annotation:
-    path: ../floor_annotation
+    git:
+      url: git@github.com:mmhg-inc/floor_sqlcipher.git
+      path: floor_annotation
+      ref: develop
   meta: ^1.10.0
   source_gen: ^1.2.2
   strings: ^0.2.1
