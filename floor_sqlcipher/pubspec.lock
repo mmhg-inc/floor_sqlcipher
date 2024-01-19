@@ -212,17 +212,21 @@ packages:
   floor_annotation:
     dependency: "direct main"
     description:
-      path: "../floor_annotation"
-      relative: true
-    source: path
+      path: floor_annotation
+      ref: develop
+      resolved-ref: a9f668abd15675fe3d2b35150bc3a4fe45f0f5cb
+      url: "git@github.com:mmhg-inc/floor_sqlcipher.git"
+    source: git
     version: "1.4.2"
   floor_generator:
     dependency: "direct dev"
     description:
-      path: "../floor_generator"
-      relative: true
-    source: path
-    version: "1.4.2"
+      path: floor_generator
+      ref: develop
+      resolved-ref: a9f668abd15675fe3d2b35150bc3a4fe45f0f5cb
+      url: "git@github.com:mmhg-inc/floor_sqlcipher.git"
+    source: git
+    version: "1.0.0"
   flutter:
     dependency: "direct main"
     description: flutter
