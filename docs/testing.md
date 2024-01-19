@@ -6,7 +6,7 @@ For more test references, check out the [project's tests](https://github.com/vit
 In case you're running Linux, make sure to have sqlite3 and libsqlite3-dev installed.
 
 ```dart
-import 'package:floor/floor.dart';
+import 'package:floor_sqlcipher/floor.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // your imports follow here

@@ -1,4 +1,4 @@
-import 'package:floor/floor.dart';
+import 'package:floor_sqlcipher/floor.dart';
 
 enum TaskStatus {
   open('Open'),

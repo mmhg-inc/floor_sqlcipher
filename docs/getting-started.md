@@ -31,7 +31,7 @@ There is no restriction on where you put the file containing the entity.
 ```dart
 // entity/person.dart
 
-import 'package:floor/floor.dart';
+import 'package:floor_sqlcipher/floor.dart';
 
 @entity
 class Person {
@@ -57,7 +57,7 @@ The abstract class contains the method signatures for querying the database whic
 ```dart
 // dao/person_dao.dart
 
-import 'package:floor/floor.dart';
+import 'package:floor_sqlcipher/floor.dart';
 
 @dao
 abstract class PersonDao {
@@ -88,8 +88,8 @@ In this case, the file is named `database.dart`.
 
 // required package imports
 import 'dart:async';
-import 'package:floor/floor.dart';
-import 'package:sqflite/sqflite.dart' as sqflite;
+import 'package:floor_sqlcipher/floor.dart';
+import 'package:sqflite_sqlcipher/sqflite.dart' as sqflite;
 
 import 'dao/person_dao.dart';
 import 'entity/person.dart';

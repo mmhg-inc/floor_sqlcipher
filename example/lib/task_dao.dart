@@ -1,5 +1,5 @@
 import 'package:example/task.dart';
-import 'package:floor/floor.dart';
+import 'package:floor_sqlcipher/floor.dart';
 
 @dao
 abstract class TaskDao {

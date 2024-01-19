@@ -7,11 +7,11 @@ homepage: https://pinchbv.github.io/floor/
 publish_to: none
 
 environment:
-  sdk: '>=2.17.0 <3.0.0'
+  sdk: '>=2.17.0 <4.0.0'
 
 dependencies:
-  floor:
-    path: ../floor/
+  floor_sqlcipher:
+    path: ../floor_sqlcipher/
   flutter:
     sdk: flutter
 

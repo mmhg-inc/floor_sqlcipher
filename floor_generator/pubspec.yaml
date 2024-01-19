@@ -12,18 +12,19 @@ environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  analyzer: ^5.0.0
+  
   build: ^2.3.0
   build_config: ^1.0.0
   code_builder: ^4.1.0
   collection: ^1.15.0
   floor_annotation:
     path: ../floor_annotation
-  meta: ^1.7.0
+  meta: ^1.10.0
   source_gen: ^1.2.2
   strings: ^0.2.1
 
 dev_dependencies:
+  analyzer: ^6.3.0
   build_test: ^2.1.5
   dart_style: ^2.2.3
   mockito: ^5.2.0

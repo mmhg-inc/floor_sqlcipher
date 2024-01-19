@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:code_builder/code_builder.dart';
 import 'package:floor_generator/misc/annotation_expression.dart';
 import 'package:floor_generator/misc/extension/string_extension.dart';
@@ -92,14 +94,42 @@ class DatabaseWriter implements Writer {
     final callbackParameter = Parameter((builder) => builder
       ..name = 'callback'
       ..type = refer('Callback?'));
+    final passwordParameter = Parameter((builder) => builder
+      ..name = 'password'
+      ..type = refer('String?'));
 
     return Method((builder) => builder
       ..name = 'open'
       ..returns = refer('Future<sqflite.Database>')
       ..modifier = MethodModifier.async
       ..requiredParameters.addAll([pathParameter, migrationsParameter])
-      ..optionalParameters.add(callbackParameter)
-      ..body = Code('''
+      ..optionalParameters.addAll([callbackParameter, passwordParameter])
+      ..body = Platform.isAndroid || Platform.isIOS ? Code('''
+          final databaseOptions = sqflite.SqlCipherOpenDatabaseOptions(
+            version: ${database.version},
+            onConfigure: (database) async {
+              await database.execute('PRAGMA foreign_keys = ON');
+              await callback?.onConfigure?.call(database);
+            },
+            onOpen: (database) async {
+              await callback?.onOpen?.call(database);
+            },
+            onUpgrade: (database, startVersion, endVersion) async {
+              await MigrationAdapter.runMigrations(database, startVersion, endVersion, migrations);
+
+              await callback?.onUpgrade?.call(database, startVersion, endVersion);
+            },
+            onCreate: (database, version) async {
+              $createTableStatements
+              $createIndexStatements
+              $createViewStatements
+
+              await callback?.onCreate?.call(database, version);
+            },
+            password: password,
+          );
+          return sqfliteDatabaseFactory.openDatabase(path, options: databaseOptions);
+          ''') : Code('''
           final databaseOptions = sqflite.OpenDatabaseOptions(
             version: ${database.version},
             onConfigure: (database) async {
