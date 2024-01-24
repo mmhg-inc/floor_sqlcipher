@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:code_builder/code_builder.dart';
 import 'package:floor_generator/misc/annotation_expression.dart';
 import 'package:floor_generator/misc/extension/string_extension.dart';
@@ -10,8 +8,9 @@ import 'package:floor_generator/writer/writer.dart';
 /// Takes care of generating the database implementation.
 class DatabaseWriter implements Writer {
   final Database database;
+  final bool isTestingDb;
 
-  DatabaseWriter(this.database);
+  DatabaseWriter(this.database, this.isTestingDb);
 
   @override
   Class write() {
@@ -55,7 +54,7 @@ class DatabaseWriter implements Writer {
         ..returns = refer(daoTypeName)
         ..name = daoGetterName
         ..body = Code(
-            'return _${daoGetterName}Instance ??= _\$$daoTypeName(database, changeListener);'));
+            'return _${daoGetterName}Instance ??= _\$$daoTypeName(database!, changeListener);'));
     }).toList();
   }
 
@@ -104,7 +103,7 @@ class DatabaseWriter implements Writer {
       ..modifier = MethodModifier.async
       ..requiredParameters.addAll([pathParameter, migrationsParameter])
       ..optionalParameters.addAll([callbackParameter, passwordParameter])
-      ..body = Platform.isAndroid || Platform.isIOS ? Code('''
+      ..body = !isTestingDb ? Code('''
           final databaseOptions = sqflite.SqlCipherOpenDatabaseOptions(
             version: ${database.version},
             onConfigure: (database) async {

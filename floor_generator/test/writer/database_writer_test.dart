@@ -27,7 +27,7 @@ void main() {
       }
     ''');
 
-    final actual = DatabaseWriter(database).write();
+    final actual = DatabaseWriter(database, true).write();
 
     expect(actual, equalsDart(r'''
     class _$TestDatabase extends TestDatabase {
@@ -94,7 +94,7 @@ void main() {
       }
     ''');
 
-    final actual = DatabaseWriter(database).write();
+    final actual = DatabaseWriter(database, true).write();
 
     expect(actual, equalsDart(r'''
       class _$TestDatabase extends TestDatabase {
@@ -162,7 +162,7 @@ void main() {
       }
     ''');
 
-    final actual = DatabaseWriter(database).write();
+    final actual = DatabaseWriter(database, true).write();
 
     expect(actual, equalsDart(r'''
       class _$TestDatabase extends TestDatabase {
@@ -229,7 +229,7 @@ void main() {
       }
     ''');
 
-    final actual = DatabaseWriter(database).write();
+    final actual = DatabaseWriter(database, true).write();
 
     expect(actual, equalsDart(r"""
       class _$TestDatabase extends TestDatabase {
